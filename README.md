@@ -290,10 +290,9 @@ In the general case we will add the first layer to take the input as 224x224 ima
 | Giga flops	|0.5687 | 0.5514 | 3.8580 | 7.5702 | 11.282 | 1.5826 | 3.0631 | 4.7727 | 0.8475 | 0.3491 | 15.470 | 19.632 | 0.1234|
 | million params | 4.2309 | 4.2309 | 25.556 | 44.548 | 60.191 | 6.9902 | 7.9778 | 20.012 | 1.2444 | 1.2315 | 138.34 | 143.65 | 1.8137 |
 
-
-
 </details>
 
+The bulk of this work was done by <https://github.com/jsaksris/> while on internship at [jolibrain](http://www.jolibrain.com).
 
 
 
