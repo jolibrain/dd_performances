@@ -3,7 +3,7 @@
 
 This report documents the performances of the [DeepDetect](https://deepdetect.com/) Open Source Deep Learning server on a variety of platforms and popular or particularly effective neural network architectures. The full server source code is available from <https://github.com/beniz/deepdetect>.
 
-The reported performances use a customized version of [Caffe](https://github.com/beniz/caffe).
+The reported performances use a customized version of [Caffe](https://github.com/beniz/caffe) as backend.
 
 ### Reference platforms
 Given different platforms, the result should serve as a reference for parties and users interested in choosing the right NN model for their work on their server or embedded systems.
