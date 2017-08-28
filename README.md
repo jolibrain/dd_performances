@@ -232,6 +232,7 @@ In the general case we will add the first layer to take the input as 224x224 ima
 ## Raw Data
 
 <details>
+
 ### 5 pass average processing time(GTX 1080 Ti):
 |Top 1 accuracy	|70.81	|missing	|75.3	|76.4	|77	|67.9	|74.9	|77.3	|59.5	|59.5	|70.5	|71.3	|missing|
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
