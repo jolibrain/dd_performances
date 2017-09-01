@@ -70,47 +70,6 @@ The reported performances are per image in ms. When batch size is greater than o
 - Squeezenet v1.1 appears to be the clear winner for embedded platforms. More analysis of low parameters versions of MobileNet could prove competitive despite the grouped convolutions.
 
 
-## Selecting an embedded platform and network
-
-The challenge of implementing NN on an embedded system is the limitation on memory and computational resources.
-
-That is to say it should have a small computational trace without losing the accuracy. To this purpose we looked into three rather novel architectures: SqueezeNet, MobileNet and ShuffleNet.
-
-<!-- We looked into <a href =  >Mobilenet</a>. -->
-
-#### MobileNet
-
-Mobilenet is an implementation of [Google's MobileNet](https://arxiv.org/abs/1704.04861). 
-Mobilenet has Top-1 accuracy of 70.81% and Top-5 accuracy of 89.5% compared to the leading model in accuracy, Densenet201, with 77.31% for Top-1 and 93.64% for Top-5. The MobileNet architecture has shown rather minimal lost in accuracy while reducing the footprint from 4.7 Gflops to 0.56 Gflops.
-
-But the result was rather underwhelming. While faster than densenet201, the mobilenet is nowhere near the leading models in term of speed. The reason lies with the vanilla implementation of `grouped convolutions` in Caffe. A dedicated rewrite of depthwise convolutions (modified from <https://github.com/BVLC/caffe/pull/5665>) yielded an order of magnitude speed-up, making MobileNet usable again.
-
-Our baseline was customized from <https://github.com/shicai/MobileNet-Caffe>.
-
-You can witness the performance gain from the naive MobileNet implementation with vanilla Caffe below. On CPU
-
-<table style="width=80%">
-  <tr>
-     <th><img src="mobilenet/mobilenet_GTX1080Ti.png" width="450"></th>
-     <th><img src="mobilenet/mobilenet_TX1.png" width="450"></th>
-  </tr>
-</table>
-<table style="width=80%">
-  <tr>
-     <th><img src="mobilenet/mobilenet_TK1.png" width="450"></th>
-     <th><img src="mobilenet/mobilenet_RasPi3.png" width="450"></th>
-  </tr>
-</table>
-
-The gain is negligible on the Raspberry Pi 3 pure CPU platform. On GPU platforms the gain improves with batch size.
-
-#### ShuffleNet
-
-The [ShuffleNet](https://arxiv.org/abs/1707.01083) promised a more efficient NN via the dephtwise convolutions and a dedicated shuffling of channels.
-
-We used a customized implementation from <https://github.com/farmingyard/ShuffleNet>, and that exhibit good performances.
-
-
 ## Platforms
 - Desktop GTX1080Ti (11.3 TFLOPS 3585 cores)
 
@@ -197,6 +156,47 @@ The legend shows the number of batch size in color coded manner. Note that not a
   ![alt text](model_based_plots/shufflenet.png)
 
 </details>
+
+## Selecting an embedded platform and network
+
+The challenge of implementing NN on an embedded system is the limitation on memory and computational resources.
+
+That is to say it should have a small computational trace without losing the accuracy. To this purpose we looked into three rather novel architectures: SqueezeNet, MobileNet and ShuffleNet.
+
+<!-- We looked into <a href =  >Mobilenet</a>. -->
+
+#### MobileNet
+
+Mobilenet is an implementation of [Google's MobileNet](https://arxiv.org/abs/1704.04861). 
+Mobilenet has Top-1 accuracy of 70.81% and Top-5 accuracy of 89.5% compared to the leading model in accuracy, Densenet201, with 77.31% for Top-1 and 93.64% for Top-5. The MobileNet architecture has shown rather minimal lost in accuracy while reducing the footprint from 4.7 Gflops to 0.56 Gflops.
+
+But the result was rather underwhelming. While faster than densenet201, the mobilenet is nowhere near the leading models in term of speed. The reason lies with the vanilla implementation of `grouped convolutions` in Caffe. A dedicated rewrite of depthwise convolutions (modified from <https://github.com/BVLC/caffe/pull/5665>) yielded an order of magnitude speed-up, making MobileNet usable again.
+
+Our baseline was customized from <https://github.com/shicai/MobileNet-Caffe>.
+
+You can witness the performance gain from the naive MobileNet implementation with vanilla Caffe below. On CPU
+
+<table style="width=80%">
+  <tr>
+     <th><img src="mobilenet/mobilenet_GTX1080Ti.png" width="450"></th>
+     <th><img src="mobilenet/mobilenet_TX1.png" width="450"></th>
+  </tr>
+</table>
+<table style="width=80%">
+  <tr>
+     <th><img src="mobilenet/mobilenet_TK1.png" width="450"></th>
+     <th><img src="mobilenet/mobilenet_RasPi3.png" width="450"></th>
+  </tr>
+</table>
+
+The gain is negligible on the Raspberry Pi 3 pure CPU platform. On GPU platforms the gain improves with batch size.
+
+#### ShuffleNet
+
+The [ShuffleNet](https://arxiv.org/abs/1707.01083) promised a more efficient NN via the dephtwise convolutions and a dedicated shuffling of channels.
+
+We used a customized implementation from <https://github.com/farmingyard/ShuffleNet>, and that exhibit good performances.
+
 
 ## Methodology
 ### benchmarking
