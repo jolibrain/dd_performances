@@ -58,7 +58,10 @@ Below are performances, displayed in log scale.
      <th><img src="graph/Raspi_log.png" width="450"></th>
   </tr>
 </table>
-
+<table style="width=100%">
+ <tr>
+	<th><img src="graph/Jetson-nano-log.png" width="450"></th>
+ </tr>
 The reported performances are per image in ms. When batch size is greater than one, the reported value is the average time per image for that batch size. On GPUs and platforms with limited memory, not all batch sizes are applicable.
 
 ### Discussion
@@ -100,6 +103,22 @@ The reported performances are per image in ms. When batch size is greater than o
   <summary>See linear-scale plot</summary>
 
   ![alt text](graph/TX1_linear.png)
+
+</details>
+
+- Jetson Nano (500 GFLOPS 128 cores)
+
+  Weighting in at 5 W max while in operation, Nano is a low cost solution for embedded system applications and IA on edge. 
+  It has a 500 GFLOPS output. For a batch size of 1, ShuffleNet and SqueezeNet reach respectively 12 and 25 fps. 
+  Jetson Nano can push up to 10 fps with a batch-size superior or equal to 2 for Squeezenet-SSD-faces, SqueezeNet-SS-voc and ResNet18-ocr.
+  When pushed to a 64 batch size, the Nano can compute up to 48 fps for SqueezeNet and ResNet18-ocr. For a large-scale project or one with budget-constraints 
+  Jetson Nano seems to be an interesting solution.     
+
+![alt text](graph/Jetson-nano-log.png)
+<details>
+  <summary>See linear-scale plot</summary>
+
+  ![alt text](graph/Jetson-nano.png)
 
 </details>
 
