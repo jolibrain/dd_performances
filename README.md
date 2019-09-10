@@ -61,7 +61,7 @@ Below are performances, displayed in log scale.
 </table>
 <table style="width=100%">
  <tr>
-	<th><img src="graph/Jetson-nano-log.png" width="450"></th>
+    <th><img src="graph/Jetson-nano-log.png" width="450"></th>
  </tr>
 </table>
 The reported performances are per image in ms. When batch size is greater than one, the reported value is the average time per image for that batch size. On GPUs and platforms with limited memory, not all batch sizes are applicable.
