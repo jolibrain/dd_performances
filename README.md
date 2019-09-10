@@ -12,7 +12,6 @@ Ordered from most to less powerful:
 
 - NVidia GTX 1080 Ti
 - NVidia Jetson TX1
-- NVidia Jetson Nano
 - NVidia Jetson TK1
 - Raspberry Pi 3
 
@@ -50,18 +49,19 @@ Below are performances, displayed in log scale.
 <table style="width=100%">
   <tr>
      <th><img src="graph/gtx1080_log.png" width="450"></th>
-     <th><img src="graph/TX1_log.png" width="450"></th>
+     <th><img src="graph/TK1_log.png" width="450"></th>
   </tr>
 </table>
 <table style="width=100%">
   <tr>
-     <th><img src="graph/TK1_log.png" width="450"></th>
-     <th><img src="graph/Raspi_log.png" width="450"></th>
+     <th><img src="graph/TX1_log.png" width="450"></th>
+     <th><img src="graph/TX2_caffe_log.png" width="450"></th>
   </tr>
 </table>
 <table style="width=100%">
  <tr>
     <th><img src="graph/Jetson-nano-log.png" width="450"></th>
+    <th><img src="graph/Raspi_log.png" width="450"></th>
  </tr>
 </table>
 The reported performances are per image in ms. When batch size is greater than one, the reported value is the average time per image for that batch size. On GPUs and platforms with limited memory, not all batch sizes are applicable.
@@ -108,6 +108,23 @@ The reported performances are per image in ms. When batch size is greater than o
 
 </details>
 
+
+- Jetson TX2 (1.5 TFLOPS 256 cores)
+
+  The Jetson TX2 offers a 1.5 TFLOPS output and is a great solution for fast and power-efficient embedded systems. The TX2 is equipped with an NVIDIA Pascal GPU.
+  This 7.5-watt modules can push up to 80 fps for a batch size of 128 for the Squeezenet model. In the same conditions, the frame per second  goes up to 68 computed images for Googlenet.  
+  On a 64 batch size, the Jetson TX2 can reach up to 50 frames per second. For a project with real time computation like autonomous cars, the Jetson TX2 would be an ideal candidate. 
+  TX2's performances allows very quick on edge computation.
+  
+![alt text](graph/TX2_caffe_log.png)
+<details>
+  <summary>See linear-scale plot</summary> 
+
+  ![alt text](graph/TX2_caffe_log.png)
+
+</details>
+
+  
 - Jetson Nano (500 GFLOPS 128 cores)
 
   Weighting in at 5 W max while in operation, Nano is a low cost solution for embedded system applications and IA on edge. 
