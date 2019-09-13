@@ -72,13 +72,13 @@ The reported performances use a customized version of [Caffe](https://github.com
 
 <table style="width=100%">
   <tr>
-     <th><img src="graph/TX2_tensorRT_log.png" width="450"></th>
+     <th><img src="graph/TX2_TensorRT_log.png" width="450"></th>
   </tr>
 </table>
 
 #### With NCNN as a backend
 
-The graph shows the performances difference between the Raspberry Pi 3 and the Raspberry Pi4 (2GB) using NCNN as a backend. 
+The graph shows the performances difference between the Raspberry Pi 3 and the Raspberry Pi 4 (2 GB) using NCNN as a backend. 
 
 <table style="width=100%">
   <tr>
