@@ -120,7 +120,7 @@ The reported performances are per image in ms. When batch size is greater than o
 <details>
   <summary>See linear-scale plot</summary> 
 
-  ![alt text](graph/TX2_caffe_log.png)
+  ![alt text](graph/TX2_caffe_linear.png)
 
 </details>
 
