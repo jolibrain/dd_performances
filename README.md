@@ -3,8 +3,6 @@
 
 This report documents the performances of the [DeepDetect](https://deepdetect.com/) Open Source Deep Learning server on a variety of platforms and popular or particularly effective neural network architectures. The full server source code is available from <https://github.com/beniz/deepdetect>.
 
-The reported performances use a customized version of [Caffe](https://github.com/beniz/caffe) as backend.
-
 ### Reference platforms
 Given different platforms, the result should serve as a reference for parties and users interested in choosing the right NN model for their work on their server or embedded systems.
 
@@ -45,6 +43,11 @@ One important aspect of choosing a model is the limitation of the hardware, such
 ### Results Overview
 
 Below are performances, displayed in log scale.
+The reported performances are per image in ms. When batch size is greater than one, the reported value is the average time per image for that batch size. On GPUs and platforms with limited memory, not all batch sizes are applicable.
+
+#### With Caffe as a backend 
+
+The reported performances use a customized version of [Caffe](https://github.com/beniz/caffe) as backend.
 
 <table style="width=100%">
   <tr>
@@ -64,7 +67,25 @@ Below are performances, displayed in log scale.
     <th><img src="graph/Raspi_log.png" width="450"></th>
  </tr>
 </table>
-The reported performances are per image in ms. When batch size is greater than one, the reported value is the average time per image for that batch size. On GPUs and platforms with limited memory, not all batch sizes are applicable.
+
+#### With TensorRT as a backend 
+
+<table style="width=100%">
+  <tr>
+     <th><img src="graph/TX2_tensorRT_log.png" width="450"></th>
+  </tr>
+</table>
+
+#### With NCNN as a backend
+
+The graph shows the performances difference between the Raspberry Pi 3 and the Raspberry Pi4 (2GB) using NCNN as a backend. 
+
+<table style="width=100%">
+  <tr>
+     <th><img src="graph/NCNN_models_RPI3_RPI4.png" width="450"></th>
+  </tr>
+</table>
+
 
 ### Discussion
 
@@ -98,7 +119,7 @@ The reported performances are per image in ms. When batch size is greater than o
   At 1 TFLOPS theoritical output, TX1 is able to push squeezenet\_v1.0, squeezenet\_v1.1, mobilenet\_depthwise, googlenet, and shufflenet to more than 25 fps.
   In extreme cases, Tx1 can compute up to 85 fps with batch-size equal or more than 16 for squeezenet\_v1.1. For a project with critical time constraint 
   such as autonomous cars, 
-  TX1 could prove to be viable solution.     
+  TX1 could prove to be viable solution. 
 
 ![alt text](graph/TX1_log.png)
 <details>
@@ -131,7 +152,7 @@ The reported performances are per image in ms. When batch size is greater than o
   It has a 500 GFLOPS output. For a batch size of 1, ShuffleNet and SqueezeNet reach respectively 12 and 25 fps. 
   Jetson Nano can push up to 10 fps with a batch-size superior or equal to 2 for Squeezenet-SSD-faces, SqueezeNet-SS-voc and ResNet18-ocr.
   When pushed to a 64 batch size, the Nano can compute up to 48 fps for SqueezeNet and ResNet18-ocr. For a large-scale project or one with budget-constraints 
-  Jetson Nano seems to be an interesting solution.     
+  Jetson Nano seems to be an interesting solution. 
 
 ![alt text](graph/Jetson-nano-log.png)
 <details>
@@ -157,10 +178,11 @@ The reported performances are per image in ms. When batch size is greater than o
 
 </details>
 
+
 - Raspberry Pi3 model B (24GFLOPs GPU and 2.3 DMIPS/MHz CPU at 35 USD)
 
   The last in our book is the Raspberry Pi3. At merely 4 watts under load, the Pi ought to be the preferred solution for remote sensing.
-  The downside lies in its ability to process images, at merely 1 fps max performance.  
+  The downside lies in its ability to process images, at merely 1 fps max performance.
 
 ![alt text](graph/Raspi_log.png)
 
@@ -172,6 +194,8 @@ The reported performances are per image in ms. When batch size is greater than o
 </details>
 
 ## Networks comparison across platforms
+
+The reported performances use a customized version of [Caffe](https://github.com/beniz/caffe) as backend.
 The results of the comparison of each model accross multiple platform are displayed below.
 The legend shows the number of batch size in color coded manner. Note that not all batch sizes are available for all architectures.
 
